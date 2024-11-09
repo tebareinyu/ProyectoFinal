@@ -75,6 +75,9 @@ ProyectoFinal
    El frontend estará disponible en `http://localhost:3000`.
 
 ## Uso de la Aplicación
+### Screenshots
+![App Screenshot](https://i.postimg.cc/CKcwGK90/Screenshot-2024-11-09-094619.png)
+
 ### Funcionalidades
 - **Agregar Tarea**: Hacer clic en el botón "Agregar Tarea" para abrir un formulario donde se ingresa el título y la descripción de la tarea.
 - **Editar Tarea**: Hacer clic en el botón "Editar" junto a una tarea para actualizar la información de la tarea.
