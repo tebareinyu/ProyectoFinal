@@ -77,7 +77,7 @@ ProyectoFinal
    ```
    El frontend estará disponible en `http://localhost:3000`.
 
-###Base de Datos
+### Base de Datos
 
 Una carpeta llamada bd dentro del directorio backend contiene un archivo con la estructura de la base de datos (task_final_proyect.sql). Este archivo debe importarse en MySQL para configurar la base de datos necesaria para el proyecto.
 
