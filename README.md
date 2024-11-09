@@ -2,10 +2,10 @@
 
 ### CURSOS: PROGRAMACIÓN WEB Y BASES DE DATOS II
 ### CARRERA: ADMINISTRACIÓN DE SISTEMAS INFORMÁTICOS
-### FACULTAD: ADMINISTRACIÓN DE SISTEMAS INFORMÁTICOS
 ### NOMBRE DEL CATEDRÁTICO: Luis Felipe Figueroa Molina
 ### PRIMER SEMESTRE 2024 - 9 de noviembre de 2024
-### CICLO: SEXTO
+### Estudiante: Esteban David Barrios Guardia
+### Carnet: 2250344
 
 ## Descripción del Proyecto
 Este proyecto consiste en el desarrollo de una **Aplicación de Lista de Tareas** con un backend en Node.js y un frontend en React.js. La aplicación permite a los usuarios agregar, actualizar, marcar como completadas, y eliminar tareas. Es una evaluación para el curso de **Programación Web y Bases de Datos II** y se enfoca en integrar conceptos de backend y frontend, así como la interacción con bases de datos.
@@ -107,7 +107,7 @@ Una carpeta llamada bd dentro del directorio backend contiene un archivo con la 
 - La URL base del backend está configurada en `http://localhost:3010`, asegúrese de que coincida con su configuración local.
 
 ## Créditos
-- **Desarrollador**: Esteban Barrios
+- **Desarrollador**: Esteban Barrios - 2250344
 - **Catedrático**: Luis Felipe Figueroa Molina
 
 ## Licencia
