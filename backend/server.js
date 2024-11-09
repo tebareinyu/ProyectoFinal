@@ -1,10 +1,24 @@
 // server.js
+require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const { Sequelize, DataTypes } = require('sequelize');
 
+// Imprimir variables de entorno para depuración
+console.log('DB_NAME:', process.env.DB_NAME);
+console.log('DB_USER:', process.env.DB_USER);
+console.log('DB_PASSWORD:', process.env.DB_PASSWORD);
+console.log('DB_HOST:', process.env.DB_HOST);
+
+// Verificar si las variables de entorno están definidas
+if (!process.env.DB_NAME || !process.env.DB_USER || typeof process.env.DB_PASSWORD === 'undefined' || !process.env.DB_HOST) {
+  console.error('Error: Faltan variables de entorno para la configuración de la base de datos.');
+  process.exit(1);
+}
+
 // Configuración de la base de datos
-const sequelize = new Sequelize('task_final_proyect', 'root', '', {
-  host: 'localhost',
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+  host: process.env.DB_HOST,
   dialect: 'mysql'
 });
 
@@ -42,8 +56,15 @@ sequelize.sync()
 
 // Configuración del servidor
 const app = express();
-const PORT = 3010;
+const PORT = process.env.PORT || 3010;
 app.use(express.json());
+
+// Habilitar CORS para permitir solicitudes desde el frontend
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || '*', // Puedes especificar la URL del frontend aquí
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 
 // Endpoints
 // Crear una nueva tarea
@@ -52,7 +73,7 @@ app.post('/tasks', async (req, res) => {
     const task = await Task.create(req.body);
     res.status(201).json(task);
   } catch (error) {
-    res.status(500).json({ error: 'Error creando la tarea' });
+    res.status(500).json({ error: 'Error creando la tarea', details: error.message });
   }
 });
 
@@ -62,7 +83,22 @@ app.get('/tasks', async (req, res) => {
     const tasks = await Task.findAll();
     res.status(200).json(tasks);
   } catch (error) {
-    res.status(500).json({ error: 'Error obteniendo las tareas' });
+    res.status(500).json({ error: 'Error obteniendo las tareas', details: error.message });
+  }
+});
+
+// Obtener una tarea por ID
+app.get('/tasks/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const task = await Task.findByPk(id);
+    if (task) {
+      res.status(200).json(task);
+    } else {
+      res.status(404).json({ error: 'Tarea no encontrada' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Error obteniendo la tarea', details: error.message });
   }
 });
 
@@ -80,7 +116,7 @@ app.put('/tasks/:id', async (req, res) => {
       res.status(404).json({ error: 'Tarea no encontrada' });
     }
   } catch (error) {
-    res.status(500).json({ error: 'Error actualizando la tarea' });
+    res.status(500).json({ error: 'Error actualizando la tarea', details: error.message });
   }
 });
 
@@ -97,7 +133,7 @@ app.delete('/tasks/:id', async (req, res) => {
       res.status(404).json({ error: 'Tarea no encontrada' });
     }
   } catch (error) {
-    res.status(500).json({ error: 'Error eliminando la tarea' });
+    res.status(500).json({ error: 'Error eliminando la tarea', details: error.message });
   }
 });
 
