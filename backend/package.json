@@ -1,18 +1,20 @@
 {
-  "name": "proyecto-final",
+  "name": "todo-backend",
   "version": "1.0.0",
-  "description": "proyecto final, universidad regional, esteban barrios 22503444",
-  "main": "index.js",
+  "description": "API RESTful para gestionar tareas pendientes, esteban barrios - 2250344",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
-  "keywords": [
-    "proyectofinal",
-    "unviersidad",
-    "regional",
-    "esteban",
-    "barrios"
-  ],
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.2.0",
+    "sequelize": "^6.29.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
   "author": "Esteban Barrios",
   "license": "ISC"
 }
