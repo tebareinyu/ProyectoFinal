@@ -20,6 +20,8 @@ ProyectoFinal
 ├── .gitignore
 ├── backend
 │   ├── .env
+│   ├── bd
+│   │   └── task_final_proyect.sql
 │   ├── package-lock.json
 │   ├── package.json
 │   └── server.js
@@ -34,6 +36,7 @@ ProyectoFinal
 │       └── index.js
 ├── LICENSE
 └── README.md
+
 ```
 
 ## Configuración del Proyecto
@@ -73,6 +76,10 @@ ProyectoFinal
    npm start
    ```
    El frontend estará disponible en `http://localhost:3000`.
+
+###Base de Datos
+
+Una carpeta llamada bd dentro del directorio backend contiene un archivo con la estructura de la base de datos (task_final_proyect.sql). Este archivo debe importarse en MySQL para configurar la base de datos necesaria para el proyecto.
 
 ## Uso de la Aplicación
 ### Screenshots
