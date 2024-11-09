@@ -1,8 +1,8 @@
 // App.js (Componente Principal Mejorado en Español)
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Layout, List, Button, Input, Modal, Form, message } from 'antd';
-import { CheckCircleOutlined, ClockCircleOutlined } from '@ant-design/icons';
+import { Layout, List, Button, Input, Modal, Form, message, Tooltip } from 'antd';
+import { CheckCircleOutlined, ClockCircleOutlined, CheckOutlined } from '@ant-design/icons';
 
 const { Header, Content, Footer } = Layout;
 
@@ -97,9 +97,15 @@ function App() {
             <List.Item
               actions={[
                 <Button onClick={() => setCurrentTask(task)}>Editar</Button>,
-                <Button type="primary" onClick={() => handleMarkComplete(task)} disabled={task.status}>
-                  Marcar como Completada
-                </Button>,
+                <Tooltip title="Completar la Tarea">
+                  <Button
+                    type="default"
+                    style={{ color: 'green', borderColor: 'green' }}
+                    onClick={() => handleMarkComplete(task)}
+                    disabled={task.status}
+                    icon={<CheckOutlined />}
+                  />
+                </Tooltip>,
                 <Button danger onClick={() => handleDeleteTask(task.id)}>Eliminar</Button>,
               ]}
             >
@@ -125,8 +131,9 @@ function App() {
         footer={null}
       >
         <Form
-          initialValues={currentTask || { title: '', description: '', status: false }}
+          initialValues={{ title: '', description: '', status: false }}
           onFinish={currentTask ? (values) => handleUpdateTask(currentTask.id, values) : handleAddTask}
+          key={currentTask ? currentTask.id : 'add-task'}
         >
           <Form.Item
             name="title"
